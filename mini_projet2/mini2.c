@@ -58,3 +58,6 @@ int main(){
     }while (choix2 == 'y');
 
 }
+int function(int){
+    
+}
