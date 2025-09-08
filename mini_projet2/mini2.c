@@ -15,20 +15,32 @@ int main(){
             printf("make your choice\n");
             printf("(%s)\n>>" , affichageTableau);
             scanf(" %c", &userChoix);
-            if(secretletter[gamephase] == userChoix){
-                affichageTableau[gamephase] = userChoix;
-                gamephase++;
-                printf("you choose the right choice\n");
-            }else{
-                printf("your choice is false\n");
-                heart--;
-                printf("you have left %d heart\n.................\n" , heart);
+            int ifin = 0;
+            for(int i = 0; i<7 ; i++){
+                if (secretletter[i] == userChoix){
+                    affichageTableau[i] =userChoix;
+                    ifin = 1;
+                }
             }
-            if(affichageTableau[6] == 'e'){
+
+            if(ifin == 0){
+                printf("you dont have any letter like that\nplease try again");
+                heart--;
+                printf("you have left %d heart\n", heart);
+            }
+
+            int ifin2 = 0;
+            for(int i = 0 ; i<7 ; i++){
+                if(affichageTableau[i] == secretletter[i]){
+                    ifin2++;
+                }
+            }
+            
+            if(ifin2 == 7){
                 printf("congradilation you win the game\n................\n");
                 break;
             }else if(heart == 0){
-                printf("your lose the game\ngood luck next time\n.................\n");
+                printf("your lose the game\n the secret letter is (%s)\ngood luck next time\n.................\n" , secretletter);
             }
         }
         do{
@@ -36,7 +48,7 @@ int main(){
             scanf(" %c", &choix2);
             if(choix2 == 'y'){
                 printf("restarting the game\n");
-            }else if(choix2 = 'n'){
+            }else if(choix2 == 'n'){
                 printf("thank you for playing our game\n");
             }else{
                 printf("invalid choice please try again\n");
