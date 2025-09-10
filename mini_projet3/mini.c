@@ -5,19 +5,19 @@
 
 int main() {
     char userinput[100][100];
-    char neutres[5][20] = {"hello", "hi"};
-    char positif[5][20] = {"happy", "good"};
-    char negatif[5][20] = {"sad", "bad"};
+    char neutres[][20] = {"hello", "hi"};
+    char positif[][20] = {"happy", "good"};
+    char negatif[][20] = {"sad", "bad"};
     char aiinput[100][100];
 
     char hello[][100] = { "nice to meet you!" , "how are you today"};
-    char hi[][100] = { "hi there!" , "nice to meet you"};
+    char hi[][100] = { "hi there!" , "hi how i can help you"};
     char happy[][100] = { "oh that great !" , "that's great keep smiling!"};
     char good[][100] = {"good vibes only" , "wow , that's wonderful news"};
     char sad[][100] = {"oh , i'm sorry to hear that" , "i understand , it's not easy"};
     char bad[][100] = {"i'm here if you want to talk about it" , "it,s okay to feel bad sometime"};
     int i = 0;
-
+    printf("..........\n");
     while (1) {
         printf("You: ");
         fgets(userinput[i], 99, stdin);
@@ -73,7 +73,7 @@ int main() {
         }
 
 
-        
+
         int r;
         srand(time(NULL));
         r = rand() % 2;
