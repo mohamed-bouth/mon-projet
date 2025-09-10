@@ -19,6 +19,11 @@ int main() {
     int i = 0;
     printf("..........\n");
     while (1) {
+        if(i == 100){
+            i = 0 ;
+            memset(userinput , 0 , sizeof(userinput));
+            memset(aiinput  , 0 , sizeof(aiinput));
+        }
         printf("You: ");
         fgets(userinput[i], 99, stdin);
 
