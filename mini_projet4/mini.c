@@ -101,6 +101,8 @@ void ajouter_etudiant(){
     }
     
     for (int i = n - nb; i < n; i++) {
+        int tmp;
+        int flage = 0;
         printf("..............................\n");
         printf("Entrez le nom de l'etudiant %d: ", i + 1);
         scanf("%29s", etudiant[i].nom);
@@ -111,7 +113,18 @@ void ajouter_etudiant(){
         printf("Entrez la moyenne: ");
         scanf("%f", &etudiant[i].moyenne);
         printf("Entrez ID: ");
-        scanf("%d", &etudiant[i].id);
+        scanf("%d", &tmp);
+        for(int j = 0 ; j < n ; j++) {
+            if ( j != i && etudiant[j].id == tmp){
+                printf("desole, cet id existe deja\n");
+                flage = 1;
+                i--;
+                break;
+            }
+        }
+        if(flage == 0){
+            etudiant[i].id = tmp;
+        }
 
     }
 }
@@ -129,15 +142,28 @@ void ajouter_cours(){
         cours = realloc(cours, c * sizeof(struct Cours));
     }
     for (int i = c - nc ; i < c ; i++){
+        int tmp;
+        int flage = 0;
         printf(".......................\n");
-        printf("Entrez la code de cours  %d: ", i+1);
-        scanf("%d" , &cours[i].code);
-        printf("Entrez la nome de cours %d : ", i+1);
+        printf("Entrez la nom de cours  %d: ", i+1);
         scanf("%49s" , cours[i].nom);
+        printf("Entrez la note de cours %d : ", i+1);
+        scanf("%d" , &cours[i].note);
         printf("Entrez la credits de cours %d : ", i+1);
         scanf("%d" , &cours[i].credit);
-        printf("entrez la note de cours %d : " , i+1);
-        scanf("%d" , &cours[i].note);
+        printf("entrez la code de cours %d : " , i+1);
+        scanf("%d" , &tmp);
+        for(int j = 0 ; j < c ; j++) {
+            if ( j != i && cours[j].code == tmp){
+                printf("desole, cet id existe deja\n");
+                flage = 1;
+                i--;
+                break;
+            }
+        }
+        if(flage == 0){
+            cours[i].code = tmp;
+        }
 
     }
 }
