@@ -23,7 +23,7 @@ int main(){
             }
         }
         printf("%s", chaine3);
-
+        
     }else{
         strcat(chaine1 , chaine2);
         printf("%s", chaine1);

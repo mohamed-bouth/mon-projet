@@ -2,7 +2,7 @@
 int main(){
     char str1[100] , str2[100];
     printf("entrez un chain:\n");
-    fgets(str1 , 99 , stdin);
+    fgets(str1 , 100 , stdin);
     int j=0;
     for(int i = 0; str1[i] != '\0' ; i++){
         if(str1[i] != ' '){
@@ -10,6 +10,7 @@ int main(){
             j++;
         }
     }
+    str2[j] = '\0';
     printf("...........\n");
     printf("%s", str2);
 }
