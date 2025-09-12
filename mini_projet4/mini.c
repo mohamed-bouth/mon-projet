@@ -126,6 +126,7 @@ void ajouter_cours(){
         cours = realloc(cours, c * sizeof(struct Cours));
     }
     for (int i = c - nc ; i < c ; i++){
+        printf("..............\n");
         printf("Entrez la code de cours  %d: ", i+1);
         scanf("%d" , &cours[i].code);
         printf("Entrez la nome de cours %d : ", i+1);
@@ -154,6 +155,7 @@ void afficher_cours(){
         printf("le nom : %s\n" , cours[i].nom);
         printf("le credit : %d\n" , cours[i].credit);
         printf("le note : %d\n" , cours[i].note);
+        printf("le code : %d\n" , cours[i].code);
 
 
     }
