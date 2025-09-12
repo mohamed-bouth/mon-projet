@@ -89,6 +89,7 @@ int main(){
 
 void ajouter_etudiant(){
     int nb;
+    printf("........................................\n");
     printf("Combien d'etudiants voulez-vous ajouter: ");
     scanf("%d" , &nb);
     if (etudiant == NULL){
@@ -100,6 +101,7 @@ void ajouter_etudiant(){
     }
     
     for (int i = n - nb; i < n; i++) {
+        printf("..............................\n");
         printf("Entrez le nom de l'etudiant %d: ", i + 1);
         scanf("%29s", etudiant[i].nom);
         printf("Entrez le prenom: ");
@@ -116,6 +118,7 @@ void ajouter_etudiant(){
 
 void ajouter_cours(){
     int nc;
+    printf(".....................................\n");
     printf("Combien de cours voulez-vous ajouter: ");
     scanf("%d" , &nc);
     if(cours == NULL){
@@ -126,7 +129,7 @@ void ajouter_cours(){
         cours = realloc(cours, c * sizeof(struct Cours));
     }
     for (int i = c - nc ; i < c ; i++){
-        printf("..............\n");
+        printf(".......................\n");
         printf("Entrez la code de cours  %d: ", i+1);
         scanf("%d" , &cours[i].code);
         printf("Entrez la nome de cours %d : ", i+1);
@@ -140,6 +143,7 @@ void ajouter_cours(){
 }
 
 void afficher_etudiants(){
+    printf(".........................\n");
     printf("la list de etudiants :\n");
     printf(".........................\n");
     for(int i = 0 ; i < n ; i++){
@@ -148,10 +152,11 @@ void afficher_etudiants(){
 }
 
 void afficher_cours(){
+    printf("....................\n");
     printf("La list de cours :\n");
     printf(".........................\n");
     for(int i = 0 ; i < c ; i++){
-        printf("cours %d :........\n" , i+1);
+        printf("........cours %d :........\n" , i+1);
         printf("le nom : %s\n" , cours[i].nom);
         printf("le credit : %d\n" , cours[i].credit);
         printf("le note : %d\n" , cours[i].note);
@@ -164,6 +169,7 @@ void afficher_cours(){
 
 void id(){
     int lookingid;
+    printf(".............................................\n");
     printf("ecrivez ID de l'etudiant que vous recherchez:\n>");
     scanf("%d" , &lookingid);
     int flag = 0;
@@ -172,9 +178,11 @@ void id(){
         if(lookingid == etudiant[i].id){
             place = i;
             flag = 1;
+            break;
         }
     }
     if (flag == 0){
+        printf("..............................................\n");
         printf("desole, nous ne trouvons pas ID comme le vetre\n");
     }else{
         printf("...................\n");
@@ -188,6 +196,7 @@ void id(){
 
 void md_note(){
     int lookingcs;
+    printf("..........................................\n");
     printf("ecrivez code de cours que vous recherchez:\n>");
     scanf("%d" , &lookingcs);
     int flag = 0;
@@ -196,11 +205,14 @@ void md_note(){
         if(lookingcs == cours[i].code){
             place = i;
             flag = 1;
+            break;
         }
     }
     if (flag == 0){
+        printf("..................................................\n");
         printf("desole, nous ne trouvons pas code comme le vetre\n");
     }else{
+        printf("...................................................\n");
         printf("ecrire la nouvelle note : ");
         scanf("%d" , &cours[place].note);
     }
