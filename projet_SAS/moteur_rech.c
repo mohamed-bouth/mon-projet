@@ -74,6 +74,7 @@ int main(){
             statistique();
             break;
         case 7 :
+            analyses();
             
             break;
         case 8 :
@@ -225,6 +226,10 @@ void chercheMot(){
     }else{
         printf("Le mot que vous cherchez n'existe pas \n");
     }
+    printf("=============================\n");
+    printf("Pour continuer, appuyez sur Entree : \n");
+    getchar();
+    getchar();
 }
 
 void clear(){
@@ -248,6 +253,7 @@ void chercheMotP(){
     char mot[50];
     printf("Quel mot cherchez-vous ?\n");
     scanf("%s" , mot);
+    getchar();
     int flage1 = 0;
     for(int i = 0 ; i < nomber_mot ; i++){
         if(mot[0] == mot_information[i].valeur[0]){
@@ -268,6 +274,9 @@ void chercheMotP(){
     if(flage1 == 0){
         printf("Le mot que vous cherchez n'existe pas \n");
     }
+    printf("=============================\n");
+    printf("Pour continuer, appuyez sur Entree : \n");
+    getchar();
 }
 
 void trierLesMots(){
@@ -285,6 +294,7 @@ void trierLesMots(){
     printf("1 : Par ordre alphabétique\n");
     printf("2 : Par fréquence\n");
     printf("3 : Par longueur\n");
+    printf("4. sortie\n");
     printf(">>");
     scanf("%d" , &choix);
     switch (choix)
@@ -305,6 +315,10 @@ void trierLesMots(){
             printf("=============================\n");
             printf("-> %s\n" , copy[i].valeur);
         }
+        printf("=============================\n");
+        printf("Pour continuer, appuyez sur Entree : \n");
+        getchar();
+        getchar();
         break;
     case 2 :
         for(int i = 0 ; i < nomber_mot -1 ; i++){
@@ -323,6 +337,10 @@ void trierLesMots(){
             printf("-> %s\n" , copy[i].valeur);
             printf("->occurrences : %d\n" , copy[i].occurrences);
         }
+        printf("=============================\n");
+        printf("Pour continuer, appuyez sur Entree : \n");
+        getchar();
+        getchar();
         break;
     case 3 :
         for(int i = 0 ; i < nomber_mot ; i++){
@@ -340,7 +358,12 @@ void trierLesMots(){
             printf("-> %s\n" , copy[i].valeur);
             printf("->longuer : %d\n" , copy[i].longueur);
         }
-    
+        printf("=============================\n");
+        printf("Pour continuer, appuyez sur Entree : \n");
+        getchar();
+        getchar();
+    case 4:
+        break;
     default:
         printf("invalide choix\n");
         break;
@@ -402,13 +425,152 @@ void statistique(){
     printf("mot le plus frequent : %s\n" , mot_information[flage3].valeur);
     printf("occurrences : %d\n" , mot_information[flage3].occurrences);
     printf("la longueur : %d\n" , mot_information[flage3].longueur);
+    printf("=============================\n");
+    printf("Pour continuer, appuyez sur Entree : \n");
+    getchar();
 
 }
 
 void analyses(){
-    printf("\n");
-    printf("\n");
-    printf("\n");
+    int choix;
+    printf("1. Palindromes\n");
+    printf("2. Anagrammes\n");
+    printf("3. Nuage de mots\n");
+    printf("4. sortie\n");
+    printf(">>");
+    scanf("%d" , &choix);
+    switch (choix)
+    {
+    case 1 :
+        int flage = 0;
+        for(int i = 0 ; i < nomber_mot ; i++){
+
+            char inverse[50];
+            int len =  mot_information[i].longueur - 1 ;
+            int z = 0;
+            flage = 0 ;
+
+            for(int j = len ; j >= 0 ; j--){
+                inverse[z++] = mot_information[i].valeur[j];
+            }
+            inverse[z] = '\0';
+            if(strcmp(inverse , mot_information[i].valeur) == 0){
+                flage = 1 ; 
+            }
+
+            if(flage == 1){
+                printf("=============================\n");
+                printf("%s -> %s\n" , inverse , mot_information[i].valeur);
+            }
+        }
+        if(flage == 0){
+            printf("=============================\n");
+            printf("nous ne trouvons aucun mot palindrome\n");
+        }
+        printf("=============================\n");
+        printf("Pour continuer, appuyez sur Entree : \n");
+        getchar();
+        getchar();
+        break;
+    case 2 :
+
+            char copy1[50];
+            char copy2[50];
+
+            int flage2 = 0 ;
+        printf("=============================\n");
+        for(int i = 0 ; i < nomber_mot ; i++){
+
+            for(int j = i + 1 ; j < nomber_mot ; j++){
+
+                int len = strlen(mot_information[i].valeur);
+                int len2 = strlen(mot_information[j].valeur);
+                strcpy(copy1 , mot_information[i].valeur);
+                strcpy(copy2 , mot_information[j].valeur);
+                if(len == len2){
+                    flage2 = 0 ;
+                    for(int z = 0 ; z < len  ; z++){
+                        for(int w = z + 1 ; w < len ; w++){
+                            char temp;
+                            if(copy1[z] > copy1[w]){
+                                temp = copy1[z];
+                                copy1[z] = copy1[w];
+                                copy1[w] = temp;
+                            }
+                        }
+                    }
+                    for(int z = 0 ; z < len  ; z++){
+
+                        for(int w = z + 1 ; w < len ; w++){
+
+                            char temp;
+                            if(copy2[z] > copy2[w]){
+                                temp = copy2[z];
+                                copy2[z] = copy2[w];
+                                copy2[w] = temp;
+                            }
+                        }
+                    }
+                    if(strcmp(copy1 , copy2) == 0){
+                        flage2 = 1;
+                    }
+                        
+                    if(flage2 == 1){
+                        printf("%s >> %s\n" , mot_information[i].valeur , mot_information[j].valeur);
+                    }
+                }
+            }
+        }
+        if(flage2 == 0){
+            printf("nous ne trouvons aucun mot anagrammes\n");
+        }
+        printf("=============================\n");
+        printf("Pour continuer, appuyez sur Entree : \n");
+        getchar();
+        getchar();
+        
+        break;
+    case 3 :
+        struct Mot copy[500];
+        struct Mot temp;
+        for(int i = 0 ; i < nomber_mot ; i++){
+
+            copy[i] = mot_information[i];
+        }
+        for(int i = 0 ; i < nomber_mot -1 ; i++){
+
+            for(int j = i + 1 ; j < nomber_mot ; j++){
+                
+                if(copy[i].occurrences < copy[j].occurrences){
+                    temp = copy[i];
+                    copy[i] = copy[j];
+                    copy[j] = temp;
+                }
+            }
+        }
+        char point[50];
+        printf("=============================\n");
+        for(int i = 0 ; i < nomber_mot ; i++){
+
+            int j = 0 ;
+            for(j; j <copy[i].occurrences ; j++){
+                point[j] = '*';
+            }
+            point[j] = '\0';
+            
+            printf("%s (%s)\n" , copy[i].valeur  , point);
+        }
+        printf("=============================\n");
+        printf("Pour continuer, appuyez sur Entree : \n");
+        getchar();
+        getchar();
+        break;
+    case 4 :
+        break;
+    default:
+        printf("invalid choix\n");
+        break;
+    }
 }
 
 
