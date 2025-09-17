@@ -241,7 +241,7 @@ void clear(){
         strcpy(mot_information[j].valeur , "");
         mot_information[j].occurrences = 0;
         mot_information[j].longueur = 0;
-        for(int z = 0; j < mot_information[j].occurrences ; z++){
+        for(int z = 0; z < mot_information[j].occurrences ; z++){
             mot_information[j].positions[z] = 0;
         }
     }
@@ -478,6 +478,7 @@ void analyses(){
             char copy2[50];
 
             int flage2 = 0 ;
+            int conn = 0;
         printf("=============================\n");
         for(int i = 0 ; i < nomber_mot ; i++){
 
@@ -487,8 +488,8 @@ void analyses(){
                 int len2 = strlen(mot_information[j].valeur);
                 strcpy(copy1 , mot_information[i].valeur);
                 strcpy(copy2 , mot_information[j].valeur);
+                flage2 = 0 ;
                 if(len == len2){
-                    flage2 = 0 ;
                     for(int z = 0 ; z < len  ; z++){
                         for(int w = z + 1 ; w < len ; w++){
                             char temp;
@@ -512,6 +513,7 @@ void analyses(){
                         }
                     }
                     if(strcmp(copy1 , copy2) == 0){
+                        conn++;
                         flage2 = 1;
                     }
                         
@@ -521,7 +523,7 @@ void analyses(){
                 }
             }
         }
-        if(flage2 == 0){
+        if(conn == 0){
             printf("nous ne trouvons aucun mot anagrammes\n");
         }
         printf("=============================\n");
@@ -540,7 +542,7 @@ void analyses(){
         for(int i = 0 ; i < nomber_mot -1 ; i++){
 
             for(int j = i + 1 ; j < nomber_mot ; j++){
-                
+
                 if(copy[i].occurrences < copy[j].occurrences){
                     temp = copy[i];
                     copy[i] = copy[j];
