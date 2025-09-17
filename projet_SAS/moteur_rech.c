@@ -38,6 +38,8 @@ void statistique();
 
 void analyses();
 
+char *my_strtok (char *text);
+
 
 
 
@@ -139,7 +141,7 @@ void cleanText(){
     cleanChar();
 
     char *debutText = text ;
-    char *mot = strtok(text , " ");
+    char *mot = my_strtok(text);
 
     while(mot != NULL){
         nomber_mot_total++;
@@ -171,7 +173,7 @@ void cleanText(){
                 mot_information[j].occurrences++;
             }
         }
-        mot = strtok(NULL , " ,.!?;:");
+        mot = my_strtok(NULL);
         
     }
     
@@ -239,11 +241,11 @@ void clear(){
     
     for(int j = 0 ; j < nomber_mot ; j++){
         strcpy(mot_information[j].valeur , "");
-        mot_information[j].occurrences = 0;
         mot_information[j].longueur = 0;
         for(int z = 0; z < mot_information[j].occurrences ; z++){
             mot_information[j].positions[z] = 0;
         }
+        mot_information[j].occurrences = 0;
     }
     nomber_mot = 0;
     nomber_mot_total = 0;
@@ -362,6 +364,7 @@ void trierLesMots(){
         printf("Pour continuer, appuyez sur Entree : \n");
         getchar();
         getchar();
+        break;
     case 4:
         break;
     default:
@@ -402,7 +405,7 @@ void statistique(){
     int freq = mot_information[0].occurrences;
     for(int i = 1 ; i < nomber_mot ; i++){
         if(freq < mot_information[i].occurrences){
-            freq < mot_information[i].occurrences;
+            freq = mot_information[i].occurrences;
             flage3 = i;
         }
     }
@@ -573,6 +576,40 @@ void analyses(){
         printf("invalid choix\n");
         break;
     }
+}
+
+char *my_strtok (char *text){
+    static char delim = ' ';
+    static char *last;
+    
+    if(text != NULL){
+        last = text;
+    }
+
+    if(last == NULL){
+        return NULL;
+    }
+
+    char *start  = last;
+    while(*start && *start == delim){
+        start++;
+    }
+    if(*start == '\0') {
+        last = NULL;
+        return NULL;
+    }
+
+    char *end = start;
+    while(*end && *end != delim){
+        end++;
+    }
+    if(*end){
+        *end = '\0';
+        last = end + 1;
+    }else{
+        last = NULL;
+    }
+    return start;
 }
 
 
